@@ -16,7 +16,7 @@ h4,h5,h6 {
     padding: 5px;
     background-color: rgba(163, 163, 163, 0.6);
 }
-#title-image, #youlost, #youwon { 
+#title-image, #gameover-image, #youwin-image{ 
     display: block;
     margin: 0 auto;
 }
@@ -26,8 +26,8 @@ h4,h5,h6 {
 }
 
 #pressKeyTryAgain, 
-#youlost, 
-#youwon { display: none;}
+#gameover-image, 
+#youwin-image { display: none;}
 .gameplay-column {
     padding-top: 20px;
     border: 3px solid #fff;
