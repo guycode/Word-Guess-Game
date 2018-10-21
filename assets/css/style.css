@@ -1,0 +1,38 @@
+body {
+    background-color: #eee;
+    padding-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-shadow: 0 0 2px black, -1px -1px 2px black, 1px 0 2px black, 1px 1px 2px black;
+    background: url('../images/background.jpg') no-repeat;
+    background-size: cover;
+}
+.container { 
+    text-align: center;
+    
+}
+h1,h2,h3,
+h4,h5,h6 {
+    padding: 5px;
+    background-color: rgba(163, 163, 163, 0.6);
+}
+#title-image, #youlost, #youwon { 
+    display: block;
+    margin: 0 auto;
+}
+
+#currentWord {
+    letter-spacing: 10px;
+}
+
+#pressKeyTryAgain, 
+#youlost, 
+#youwon { display: none;}
+.gameplay-column {
+    padding-top: 20px;
+    border: 3px solid #fff;
+    text-align: center;
+    margin-top: 20px;
+    min-height: 500px;
+    background-color: rgba(255, 255, 255, .3);
+}

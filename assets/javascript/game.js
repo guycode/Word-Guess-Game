@@ -1,44 +1,94 @@
-<script>
-    var words = [
-        'sharks',
-        'kings',
-        'oilers',
-        'canucks',
-        'golden knights',
-        'maple leafs',
-        'red wings',
-        'avalanche'
+
+'use strict';
+
+var selectableWords =           
+    [
+        "SHARKS",
+        "KINGS",
+        "RED WINGS",
+        "OILERS",
+        "DUCKS",
+        "AVALANCHE",
+        "RANGERS",
+        "ISLANDERS",
+        "FLAMES",
+        "WILD",
+        "STARS",
+        "LIGHTNING",
+        "BRUINS",
     ];
-    
-    var word = words[Math.floor(Math.random()* words.length)];
 
-    var answers = [];
-    for (var i = 0 ; i < word.length; i++) {
-        answers[i] = '_';
+const maxTries = 10;            
+var guessedLetters = [];        
+var currentWordIndex;           
+var guessingWord = [];          
+var remainingGuesses = 0;       
+var hasFinished = false;         
+var wins = 0;                  
+
+
+
+// Reset our game-level variables
+function resetGame() {
+    remainingGuesses = maxTries;
+
+   
+    currentWordIndex = Math.floor(Math.random() * (selectableWords.length));
+
+  
+    guessedLetters = [];
+    guessingWord = [];
+
+    document.getElementById("hangmanImage").src = "";
+
+
+    for (var i = 0; i < selectableWords[currentWordIndex].length; i++) {
+        guessingWord.push("_");
+    }   
+
+    document.getElementById("pressKeyTryAgain").style.cssText= "display: none";
+    document.getElementById("gameover-image").style.cssText = "display: none";
+    document.getElementById("youwin-image").style.cssText = "display: none";
+
+    updateDisplay();
+};
+
+function updateDisplay() {
+
+    document.getElementById("totalWins").innerText = wins;
+
+    var guessingWordText = "";
+    for (var i = 0; i < guessingWord.length; i++) {
+        guessingWordText += guessingWord[i];
     }
 
-    var lettersLeft = word.length
+    //
+    document.getElementById("currentWord").innerText = guessingWordText;
+    document.getElementById("remainingGuesses").innerText = remainingGuesses;
+    document.getElementById("guessedLetters").innerText = guessedLetters;
+};
 
-    while (lettersLeft > 0) {
-        alert(answers.join(" "));
 
-        var guess = prompt('Take A Guess!');
-        if (guess === null) {
-            break;
-        }
-        elseif (guess.length !== 1)  {
-            alert("Please enter a single letter");
-        }
-        else {
-            for (var j = o; j < word.length; j++) {
-                if (word[j] === guess) {
-                    answers[j] = guess;
-                    lettersLeft--;
-                }
-            }
+function evaluateGuess(letter) {
+
+    var positions = [];
+
+    for (var i = 0; i < selectableWords[currentWordIndex].length; i++) {
+        if(selectableWords[currentWordIndex][i] === letter) {
+            positions.push(i);
         }
     }
-    
-    alert(answers.join(" "));
-    alert("Nice! the word was " + word);
-</script>
+
+};
+
+function checkWin() {
+    if(guessingWord.indexOf("_") === -1) {
+        document.getElementById("youwin-image").style.cssText = "display: block";
+        document.getElementById("pressKeyTryAgain").style.cssText= "display: block";
+        wins++;
+        winSound.play();
+        hasFinished = true;
+    }
+};
+
+
